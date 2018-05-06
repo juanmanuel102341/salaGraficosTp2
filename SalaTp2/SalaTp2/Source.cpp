@@ -2,8 +2,20 @@
 #include<SFML/Window.hpp>
 #include<iostream>
 #include"Game.h"
+#include<Windows.h>
 using namespace std;
+#ifdef _DEBUG 
+const bool is_debig = true;
+#else 
+const bool is_debig = false;
+#endif 
 int main() {
+
+	if (is_debig == false) {
+		HWND hWnd = GetConsoleWindow();
+		ShowWindow(hWnd, SW_HIDE);
+	}
+	
 	
 	Game game;
 	game.Run();
