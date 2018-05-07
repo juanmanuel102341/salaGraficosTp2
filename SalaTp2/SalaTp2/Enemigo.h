@@ -13,6 +13,8 @@ public:
 	virtual void Move(sf::Time deltaTime)=0;
 	virtual void Destroy()=0 ;
 	virtual void Persuit(sf::Vector2f posPlayer) = 0;
+	virtual void TakeOutBullet() = 0;
+	virtual void DeleteBullet() = 0;
 	list<Entity*>listBulletLives;
 	list<Entity*>listBulletDeads;
 private:

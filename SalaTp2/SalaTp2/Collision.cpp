@@ -16,6 +16,7 @@ void Collision::CollideBulletEnemy() {
 		if(eBullet->sprite.getGlobalBounds().intersects(eEnemy->sprite.getGlobalBounds())){
 		
 			std::cout << "contacto" << endl;
+			gui->ChangePlanes();
 			eBullet->live = false;
 			player->listBulletLives.erase(it);
 			eEnemy->live = false;
@@ -33,6 +34,9 @@ void Collision::CollideEnemyPlayer() {
 		if (enemy->sprite.getGlobalBounds().intersects(player->sprite.getGlobalBounds())) {
 			std::cout << "contacto " << endl;
 			player->dead = true;
+			player->Position(-100, -100);
+			player->clockSpawn.restart();
+			gui->ChangeLife();
 			enemy->live = false;
 			enemyManager->listLive.erase(it);
 			return;
@@ -49,6 +53,9 @@ void Collision::CollideBulletPlayer() {
 			if (bullet->sprite.getGlobalBounds().intersects(player->sprite.getGlobalBounds())) {
 				std::cout << "contacto " << endl;
 				player->dead = true;
+				player->Position(-100, -100);
+				player->clockSpawn.restart();
+				gui->ChangeLife();
 				bullet->live = false;
 				enemy->listBulletLives.erase(it2);
 				return;

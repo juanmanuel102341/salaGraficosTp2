@@ -64,6 +64,15 @@ void EnemyManager::TakeOut() {
 	}
 	
 }
+void EnemyManager::TakeOutAll(){
+	for (std::list<Enemigo*>::iterator it = listLive.begin(); it != listLive.end(); ++it) {
+		Enemigo*e = *it;
+		e->TakeOutBullet();
+		e->live = false;
+	}
+	listLive.erase(listLive.begin(), listLive.end());
+
+}
 
 void EnemyManager::SpawnA(){
 	elapsed = clock.getElapsedTime();
@@ -72,6 +81,14 @@ void EnemyManager::SpawnA(){
 		listLive.push_back(GetEnemy());
 		elapsed = clock.restart();
 	}
+}
+void EnemyManager::DeleteMe() {
+	for (std::list<Enemigo*>::iterator it = listLive.begin(); it != listLive.end(); ++it) {
+		Enemigo*e=*it;
+		e->DeleteBullet();
+	}
+	listDead.erase(listDead.begin(), listDead.end());
+
 }
 EnemyManager::EnemyManager(Player* _player) {
 	srand(time(NULL));

@@ -7,6 +7,7 @@ Player::Player(sf::RenderWindow* _window) {
 	window = _window;
 	Initialize();
 	velocity = 250;
+	dead = false;
 }
 void Player::HandlePlayerInputs(sf::Keyboard::Key key, bool isPressed) {
 	if (key == sf::Keyboard::Up)
@@ -25,17 +26,25 @@ void Player::HandlePlayerInputs(sf::Keyboard::Key key, bool isPressed) {
 void Player::Draw() {
 	
 	window->draw(sprite);
-
+	
 	for (std::list<Entity*>::iterator it = listBulletLives.begin(); it != listBulletLives.end(); ++it) {
 		Entity*e = *it;
 		e->Draw();
 	}
 	
-
 }
 void Player::Move(sf::Time deltaTime) {
 	sf::Vector2f movement(0.f, 0.f);
 	elapsed = clock.getElapsedTime();
+
+	
+	if (dead) {
+	    timeSpawn = clockSpawn.getElapsedTime();
+		RespawnPlayer();
+		std::cout << "spawn!time ";
+		std::cout <<timeSpawn.asSeconds() << endl;
+	}
+	
 	if (moveUp)
 		movement.y -= velocity;
 	if (moveDown)
@@ -47,7 +56,7 @@ void Player::Move(sf::Time deltaTime) {
 	if (shoot&&elapsed.asSeconds() > fireRate)
 		Atack();
 
-
+	
 	sprite.move(movement*deltaTime.asSeconds());
 	MoveBullets(deltaTime);
 }
@@ -72,6 +81,14 @@ void Player::CreationBullets(){
 		listBulletDeads.push_back(e);
 	}
 
+}
+void Player::RespawnPlayer(){
+	if (timeSpawn.asSeconds() > 2.5f) {
+		std::cout << "tiempo cumplido" << endl;
+		dead = false;
+		timeSpawn = clockSpawn.restart();
+		Position(100, 300);
+	}
 }
 Entity* Player::GetBullet() {
 	for (list<Entity*>::iterator it = listBulletDeads.begin(); it != listBulletDeads.end(); ++it) {
@@ -100,8 +117,12 @@ void Player::Initialize() {
 	if (!texture.loadFromFile("assets/_h.png")) {
 		std::cout << "error";
 	};
+	Position(0, 300);
+	initialPos.x = 0;
+	initialPos.y= 300;
 	sprite.setTexture(texture);
 	CreationBullets();
+
 	//std::cout << "scale x" << sprite.getScale().x <<std::endl;
 }
 void Player::Position(float x, float y) {

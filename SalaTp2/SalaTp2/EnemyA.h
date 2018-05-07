@@ -16,6 +16,8 @@ public:
 	virtual void Draw();
 	virtual void Move(sf::Time deltaTime);
 	virtual void Destroy();
+	virtual void TakeOutAllBullets();
+	virtual void DeleteBullet();
 	void Persuit(sf::Vector2f posPlayer);
 	
 	
@@ -29,6 +31,7 @@ private:
 	void CreationBullet();
 	Entity*GetBullet();
 	void TakeOutBullet();
+
 	void MoveBullets(sf::Time deltaTime);
 	float fireRate;
 	//sf::Vector2f vecPLayer;

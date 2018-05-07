@@ -20,11 +20,14 @@ public:
 	sf::Sprite sprite;
 	list<Entity*>listBulletLives;
 	bool dead = false;
+	sf::Clock clockSpawn;
+	sf::Vector2f initialPos;
 private:
 	void Atack();
 	void CreationBullets();
 	Entity*GetBullet();
 	void TakeOutBullet();
+	void RespawnPlayer();
 	void MoveBullets(sf::Time deltaTime);
 	bool moveUp=false;
 	bool moveDown=false;
@@ -35,7 +38,9 @@ private:
 	
 	sf::Texture texture;
 	sf::Clock clock;
+	
 	sf::Time elapsed;
+	sf::Time timeSpawn;
 	float fireRate;
 	list<Entity*>listBulletDeads;
 	

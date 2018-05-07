@@ -152,6 +152,8 @@ copy "$(SolutionDir)\SFML-2.4.2-windows-vc14-64-bit\SFML-2.4.2\bin\sfml-window-d
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Gui.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
@@ -165,6 +167,8 @@ copy "$(SolutionDir)\SFML-2.4.2-windows-vc14-64-bit\SFML-2.4.2\bin\sfml-window-d
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Gui.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

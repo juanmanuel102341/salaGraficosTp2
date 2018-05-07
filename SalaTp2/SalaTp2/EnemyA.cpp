@@ -77,12 +77,22 @@ Entity* EnemyA::GetBullet(){
 void EnemyA::TakeOutBullet() {
 	for (std::list<Entity*>::iterator it = listBulletLives.begin(); it != listBulletLives.end(); ++it) {
 		Entity*e = *it;
-		if (e->sprite.getPosition().x <50) {
+		if (e->sprite.getPosition().x <0) {
 			e->live = false;
 			listBulletLives.erase(it);
 			break;
 		}
 	}
+}
+void EnemyA::TakeOutAllBullets(){
+	for (std::list<Entity*>::iterator it = listBulletLives.begin(); it != listBulletLives.end(); ++it) {
+		Entity*e = *it;
+		e->live = false;
+	}
+	listBulletLives.erase(listBulletLives.begin(), listBulletLives.end());
+}
+void EnemyA::DeleteBullet() {
+	listBulletDeads.erase(listBulletDeads.begin(), listBulletDeads.end());
 }
 void EnemyA::MoveBullets(sf::Time deltaTime){
 	for (std::list<Entity*>::iterator it = listBulletLives.begin(); it != listBulletLives.end(); ++it) {

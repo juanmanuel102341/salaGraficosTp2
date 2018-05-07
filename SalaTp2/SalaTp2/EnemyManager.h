@@ -22,15 +22,17 @@ public:
 	void SpawnA();
 	Enemigo* GetEnemy();
 	void TakeOut();
+	void TakeOutAll();
+	void DeleteMe();
 	sf::RenderWindow* window;
 
 
 	Enemigo* enemiesA;
 	std::list<Enemigo*>listDead;
 	std::list<Enemigo*>listLive;
-	
-private:
 	sf::Clock clock;
+private:
+	
 	sf::Time elapsed;
 	Player*player;
 };
