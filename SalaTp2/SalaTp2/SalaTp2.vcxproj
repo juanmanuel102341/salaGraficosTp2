@@ -105,15 +105,16 @@ copy "$(SolutionDir)Visual Leak Detector\bin\Win32\*.*" "$(OutDir)"
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Visual Leak Detector\lib\Win64;$(SolutionDir)SFML-2.4.2-windows-vc14-64-bit\SFML-2.4.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-window-d.lib;sfml-graphics-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy "C:\Users\Juan Manuel\Desktop\tp2_Sala\SalaTp2\Visual Leak Detector\bin\Win64\*.*" "$(OutDir)" 
-copy "$(SolutionDir)\SFML-2.4.2-windows-vc14-64-bitSFML-2.4.2\bin\sfml-system-d-2.dll" "$(OutDir)"
+      <Command>copy "$(SolutionDir)Visual Leak Detector\bin\Win64\*.*" "$(OutDir)" 
+copy "$(SolutionDir)SFML-2.4.2-windows-vc14-64-bit\SFML-2.4.2\bin\sfml-system-d-2.dll" "$(OutDir)"
 
-copy "$(SolutionDir)\SFML-2.4.2-windows-vc14-64-bitSFML-2.4.2\bin\sfml-graphics-d-2.dll" "$(OutDir)"
+copy "$(SolutionDir)SFML-2.4.2-windows-vc14-64-bit\SFML-2.4.2\bin\sfml-graphics-d-2.dll" "$(OutDir)"
 
-copy "$(SolutionDir)\SFML-2.4.2-windows-vc14-64-bitSFML-2.4.2\bin\sfml-window-d-2.dll" "$(OutDir)"</Command>
+copy "$(SolutionDir)SFML-2.4.2-windows-vc14-64-bit\SFML-2.4.2\bin\sfml-window-d-2.dll" "$(OutDir)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
